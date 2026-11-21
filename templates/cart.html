@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Basket · Fix Her{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="wrap"><p class="eyebrow">Almost there</p><h1>Your <em>Basket</em></h1></div>
+</section>
+<section class="wrap cart-wrap">
+  <div id="cartList" class="cart-list"></div>
+  <div class="empty" id="cartEmpty" hidden>
+    <h3>Your basket is empty</h3>
+    <p>Add a wig and send us your order on WhatsApp.</p>
+    <a class="btn btn-dark" href="{{ url_for('shop') }}">Shop wigs</a>
+  </div>
+  <form class="form cart-form" id="cartForm" hidden>
+    <h3>Send your order</h3>
+    <label>Your name<input name="name" autocomplete="name"></label>
+    <button class="btn btn-wa full" type="submit">Send order on WhatsApp</button>
+    <p class="hint">We reply with prices, availability and payment details.</p>
+  </form>
+</section>
+<script id="catalogData" type="application/json">{{ catalog | tojson }}</script>
+{% endblock %}

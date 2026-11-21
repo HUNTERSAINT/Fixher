@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Contact · Fix Her Hair Brand{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Say hello</p>
+    <h1>Get in <em>Touch</em></h1>
+    <p class="lede">The fastest way to reach us is WhatsApp. We usually reply quickly.</p>
+  </div>
+</section>
+<section class="wrap contact-grid">
+  <div class="contact-cards">
+    <a class="ccard reveal" href="{{ wa_link('Hello Fix Her!') }}" target="_blank" rel="noopener"><b>WhatsApp</b><span>{{ brand.phone_display }}</span></a>
+    <a class="ccard reveal" href="tel:{{ brand.phone_tel }}"><b>Call us</b><span>{{ brand.phone_display }}</span></a>
+    <div class="ccard reveal"><b>Opening hours</b><span>{{ brand.hours }}</span></div>
+    {% if brand.address %}<div class="ccard reveal"><b>Visit</b><span>{{ brand.address }}</span></div>{% endif %}
+  </div>
+  <form class="form reveal" method="post" novalidate>
+    <h3>Send a message</h3>
+    <label>Your name<input name="name" required autocomplete="name"></label>
+    <label>Phone (optional)<input name="phone" inputmode="tel" autocomplete="tel"></label>
+    <label>Message<textarea name="message" rows="5" required></textarea></label>
+    <button class="btn btn-dark" type="submit">Send message</button>
+  </form>
+</section>
+{% endblock %}

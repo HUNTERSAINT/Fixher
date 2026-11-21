@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Wishlist · Fix Her{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="wrap"><p class="eyebrow">Saved for later</p><h1>Your <em>Wishlist</em></h1></div>
+</section>
+<section class="wrap">
+  <div class="pgrid" id="wishGrid">
+    {% for p in products %}<div class="wish-item" data-slug="{{ p.slug }}" hidden>{% include "_card.html" %}</div>{% endfor %}
+  </div>
+  <div class="empty" id="wishEmpty" hidden>
+    <h3>Nothing saved yet</h3>
+    <p>Tap the heart on any wig to save it here.</p>
+    <a class="btn btn-dark" href="{{ url_for('shop') }}">Browse wigs</a>
+  </div>
+</section>
+{% endblock %}

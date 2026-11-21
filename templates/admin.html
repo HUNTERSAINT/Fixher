@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · Fix Her{% endblock %}
+{% block content %}
+<section class="wrap admin">
+  <div class="admin-head"><h1>Dashboard</h1><a class="btn btn-line btn-sm" href="{{ url_for('admin_logout') }}">Log out</a></div>
+
+  <h2>Bookings ({{ bookings|length }})</h2>
+  <div class="table-scroll">
+  <table>
+    <thead><tr><th>Ref</th><th>Date</th><th>Time</th><th>Client</th><th>Service</th><th>Wig</th><th>Notes</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+    {% for b in bookings %}
+      <tr>
+        <td>FH-{{ '%04d' % b.id }}</td><td>{{ b.booking_date }}</td><td>{{ b.booking_time }}</td>
+        <td>{{ b.name }}<br><a href="https://wa.me/{{ b.phone | replace('+','') | replace(' ','') }}" target="_blank" rel="noopener">{{ b.phone }}</a></td>
+        <td>{{ service_map[b.service].name }}</td><td>{{ b.wig_source }}</td><td>{{ b.notes }}</td>
+        <td><span class="status {{ b.status }}">{{ b.status }}</span></td>
+        <td class="acts">
+          {% for st in ['confirmed','done','cancelled'] %}
+          <form method="post" action="{{ url_for('admin_booking_status', bid=b.id, status=st) }}"><button class="btn btn-line btn-xs">{{ st }}</button></form>
+          {% endfor %}
+        </td>
+      </tr>
+    {% else %}<tr><td colspan="9">No bookings yet.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Messages</h2>
+  {% for m in msgs %}<div class="ccard"><b>{{ m.name }} {% if m.phone %}· {{ m.phone }}{% endif %}</b><span>{{ m.message }}</span><small>{{ m.created_at }}</small></div>{% else %}<p class="muted">No messages.</p>{% endfor %}
+
+  <h2>Basket enquiries</h2>
+  {% for e in enq %}<div class="ccard"><b>{{ e.name or 'Guest' }} {% if e.phone %}· {{ e.phone }}{% endif %}</b><span>{{ e['items'] }}</span><small>{{ e.created_at }}</small></div>{% else %}<p class="muted">No enquiries.</p>{% endfor %}
+</section>
+{% endblock %}

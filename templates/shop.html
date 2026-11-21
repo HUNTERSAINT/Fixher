@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Shop Wigs · Fix Her Hair Brand{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Premium quality</p>
+    <h1>Shop <em>Wigs</em></h1>
+    <p class="lede">Hand-picked textures and colours. Add to your basket and send us your order on WhatsApp.</p>
+  </div>
+</section>
+<section class="wrap">
+  <div class="pgrid">
+    {% for p in products %}{% include "_card.html" %}{% endfor %}
+  </div>
+  <div class="custom-note reveal">
+    <h3>Can't see your dream wig?</h3>
+    <p>We make custom units in your preferred colour, length and texture.</p>
+    <a class="btn btn-dark" href="{{ wa_link('Hello Fix Her! I would like a custom wig.') }}" target="_blank" rel="noopener">Request a custom wig</a>
+  </div>
+</section>
+{% endblock %}

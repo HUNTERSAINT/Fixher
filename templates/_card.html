@@ -1,0 +1,18 @@
+<article class="pcard reveal">
+  <a class="pimg" href="{{ url_for('product', slug=p.slug) }}">
+    <img src="{{ url_for('static', filename='img/' ~ p.image_sm) }}" alt="{{ p.name }}" loading="lazy">
+    {% if p.badge %}<span class="badge">{{ p.badge }}</span>{% endif %}
+  </a>
+  <button class="heart" data-wish="{{ p.slug }}" aria-label="Add {{ p.name }} to wishlist" aria-pressed="false">
+    <svg class="ic" viewBox="0 0 24 24"><path d="M12 21s-8-5.3-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.7-8 11-8 11z"/></svg>
+  </button>
+  <div class="pbody">
+    <p class="pcat">{{ p.category }} · {{ p.texture }}</p>
+    <h3><a href="{{ url_for('product', slug=p.slug) }}">{{ p.name }}</a></h3>
+    <p class="pprice">{% if p.price %}{{ naira(p.price) }}{% else %}Ask for price{% endif %}</p>
+    <div class="prow">
+      <button class="btn btn-dark btn-sm" data-add="{{ p.slug }}">Add to basket</button>
+      <a class="btn btn-line btn-sm" href="{{ wa_link('Hello Fix Her! I am interested in the ' ~ p.name ~ '.') }}" target="_blank" rel="noopener">Enquire</a>
+    </div>
+  </div>
+</article>

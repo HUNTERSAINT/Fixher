@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Gallery · Fix Her Hair Brand{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Our work</p>
+    <h1>The <em>Gallery</em></h1>
+    <p class="lede">A look at the curls, colours and finishes that come out of Fix Her.</p>
+  </div>
+</section>
+<section class="wrap">
+  <div class="masonry">
+    {% for img in ['curls','auburn','bangs','curls','bangs','auburn'] %}
+    <button class="m-item reveal" data-full="{{ url_for('static', filename='img/' ~ img ~ '.jpg') }}" aria-label="Open photo">
+      <img src="{{ url_for('static', filename='img/' ~ img ~ '-sm.jpg') }}" alt="Fix Her wig {{ loop.index }}" loading="lazy">
+    </button>
+    {% endfor %}
+  </div>
+  <p class="center muted reveal">Want to be featured? Tag us after your appointment.</p>
+</section>
+<div class="lightbox" id="lightbox" hidden><button class="lb-close" aria-label="Close">✕</button><img alt=""></div>
+{% endblock %}

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{% block title %}Fix Her Hair Brand · Premium Wigs, Installs & Revamps{% endblock %}</title>
+<meta name="description" content="{% block desc %}Fix Her Hair Brand: premium wig installs, quality wigs and expert revamps. Look good. Feel greater. Book online or chat on WhatsApp.{% endblock %}">
+<meta name="theme-color" content="#2b1a0e">
+<meta property="og:title" content="Fix Her Hair Brand">
+<meta property="og:description" content="Premium wig installs, quality wigs and expert revamps. Look good. Feel greater.">
+<meta property="og:image" content="{{ url_for('static', filename='img/curls.jpg', _external=True) }}">
+<link rel="icon" href="{{ url_for('static', filename='img/logo-brown.png') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HairSalon","name":"Fix Her Hair Brand","telephone":"{{ brand.phone_tel }}","description":"Premium wig installs, wigs and revamps.","image":"{{ url_for('static', filename='img/curls.jpg', _external=True) }}"}
+</script>
+</head>
+<body data-page="{{ page }}">
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <svg class="ic" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M8 3l4 18M16 3l-4 18" /></svg>
+    <span>Premium Hair. Flawless Beauty</span><i class="sep"></i>
+    <a href="{{ url_for('book') }}">Book Now <svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <div class="header-inner">
+    <a class="brand" href="{{ url_for('home') }}" aria-label="Fix Her home">
+      <img src="{{ url_for('static', filename='img/logo-brown.png') }}" alt="Fix Her Hair Brand logo" width="64" height="66">
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="{{ url_for('home') }}" class="{{ 'on' if page=='home' }}">Home</a>
+      <a href="{{ url_for('services') }}" class="{{ 'on' if page=='services' }}">Services</a>
+      <a href="{{ url_for('shop') }}" class="{{ 'on' if page=='shop' }}">Shop</a>
+      <a href="{{ url_for('gallery') }}" class="{{ 'on' if page=='gallery' }}">Gallery</a>
+      <a href="{{ url_for('about') }}" class="{{ 'on' if page=='about' }}">About</a>
+      <a href="{{ url_for('contact') }}" class="{{ 'on' if page=='contact' }}">Contact</a>
+    </nav>
+    <div class="actions">
+      <a class="icon-btn desk-only" href="{{ url_for('wishlist') }}" aria-label="Wishlist">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M12 21s-8-5.3-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.7-8 11-8 11z"/></svg>
+        <b class="count" data-wish-count>0</b>
+      </a>
+      <a class="icon-btn" href="{{ url_for('cart') }}" aria-label="Basket">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <b class="count" data-cart-count>0</b>
+      </a>
+      <a class="btn btn-dark btn-sm desk-only" href="{{ url_for('book') }}">Book Now</a>
+      <button class="icon-btn burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-panel">
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">✕</button>
+    <img class="drawer-logo" src="{{ url_for('static', filename='img/logo-brown.png') }}" alt="">
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('services') }}">Services</a>
+    <a href="{{ url_for('shop') }}">Shop Wigs</a>
+    <a href="{{ url_for('gallery') }}">Gallery</a>
+    <a href="{{ url_for('about') }}">About</a>
+    <a href="{{ url_for('contact') }}">Contact</a>
+    <a href="{{ url_for('wishlist') }}">Wishlist</a>
+    <a class="btn btn-dark" href="{{ url_for('book') }}">Book an Appointment</a>
+    <a class="btn btn-wa" href="{{ wa_link('Hello Fix Her!') }}" target="_blank" rel="noopener">Chat on WhatsApp</a>
+  </div>
+</div>
+
+<main id="main">
+{% with msgs = get_flashed_messages(with_categories=true) %}
+  {% if msgs %}<div class="flashes">{% for c, m in msgs %}<div class="flash {{ c }}">{{ m }}</div>{% endfor %}</div>{% endif %}
+{% endwith %}
+{% block content %}{% endblock %}
+</main>
+
+<section class="cta-band reveal">
+  <div class="wrap cta-inner">
+    <div>
+      <p class="eyebrow light">Ready when you are</p>
+      <h2>Book Your Appointment Today!</h2>
+      <p>Look good. Feel greater.</p>
+    </div>
+    <a class="btn btn-gold" href="{{ url_for('book') }}">Book Now <svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div class="f-brand">
+      <img src="{{ url_for('static', filename='img/logo-gold.png') }}" alt="Fix Her Hair Brand" width="110">
+      <p>Premium wig installs, quality wigs and expert revamps, all in one place.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <a href="{{ url_for('services') }}">Services</a>
+      <a href="{{ url_for('shop') }}">Shop Wigs</a>
+      <a href="{{ url_for('gallery') }}">Gallery</a>
+      <a href="{{ url_for('about') }}">About Us</a>
+    </div>
+    <div>
+      <h4>Services</h4>
+      {% for s in nav_services %}<a href="{{ url_for('book', service=s.slug) }}">{{ s.name }}</a>{% endfor %}
+    </div>
+    <div>
+      <h4>Get in touch</h4>
+      <a href="tel:{{ brand.phone_tel }}">{{ brand.phone_display }}</a>
+      <a href="{{ wa_link('Hello Fix Her!') }}" target="_blank" rel="noopener">WhatsApp us</a>
+      <span>{{ brand.hours }}</span>
+      {% if brand.address %}<span>{{ brand.address }}</span>{% endif %}
+      {% if brand.instagram %}<a href="{{ brand.instagram }}" target="_blank" rel="noopener">Instagram</a>{% endif %}
+      {% if brand.tiktok %}<a href="{{ brand.tiktok }}" target="_blank" rel="noopener">TikTok</a>{% endif %}
+    </div>
+  </div>
+  <div class="wrap footer-base">
+    <span>© {{ year }} Fix Her Hair Brand. All rights reserved.</span>
+    <a href="{{ url_for('admin') }}">Admin</a>
+  </div>
+</footer>
+
+<a class="wa-float" href="{{ wa_link('Hello Fix Her! I would like to make an enquiry.') }}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" width="30" height="30" fill="#fff"><path d="M16 3C9 3 3.4 8.6 3.4 15.5c0 2.4.7 4.7 1.9 6.600L3 29l7.100-1.800a12.500 12.500 0 0 0 5.900 1.500c6.900 0 12.600-5.600 12.600-12.500C28.600 8.600 22.900 3 16 3zm0 22.900c-1.900 0-3.700-.5-5.300-1.500l-.4-.2-4.200 1.100 1.100-4.100-.3-.4a10 10 0 0 1-1.600-5.400C5.300 9.900 10.100 5.300 16 5.300s10.700 4.600 10.700 10.200S21.900 25.900 16 25.900zm5.800-7.600c-.3-.2-1.900-.9-2.200-1-.3-.1-.5-.2-.7.200-.2.300-.8 1-1 1.200-.2.200-.4.200-.7.100-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.200-.2-.3 0-.5.100-.7l.5-.5c.1-.2.200-.3.300-.5.100-.2.100-.4 0-.5l-1-2.300c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.100-.8.400-.3.300-1.100 1.100-1.100 2.600s1.100 3 1.300 3.200c.2.200 2.200 3.300 5.300 4.600.7.300 1.300.5 1.800.7.800.2 1.400.2 2 .1.600-.1 1.900-.8 2.200-1.500.3-.8.300-1.400.2-1.500-.1-.2-.3-.2-.6-.4z"/></svg>
+</a>
+
+<nav class="tabbar" aria-label="App">
+  <a href="{{ url_for('home') }}" class="{{ 'on' if page=='home' }}"><svg class="ic" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></a>
+  <a href="{{ url_for('shop') }}" class="{{ 'on' if page=='shop' }}"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Shop</span></a>
+  <a href="{{ url_for('book') }}" class="{{ 'on' if page=='book' }}"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Book</span></a>
+  <a href="{{ url_for('wishlist') }}" class="{{ 'on' if page=='wishlist' }}"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21s-8-5.3-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.7-8 11-8 11z"/></svg><span>Wishlist</span></a>
+  <a href="{{ url_for('account') }}" class="{{ 'on' if page=='account' }}"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Account</span></a>
+</nav>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}About · Fix Her Hair Brand{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Our story</p>
+    <h1>About <em>Fix Her</em></h1>
+    <p class="lede">Your hair is your crown. We help you wear it with confidence.</p>
+  </div>
+</section>
+<section class="wrap about-page">
+  <div class="about-cols">
+    <div class="reveal"><img class="about-logo" src="{{ url_for('static', filename='img/logo-brown.png') }}" alt="Fix Her Hair Brand logo"></div>
+    <div class="reveal">
+      <h2 class="script">Hair that makes you feel greater</h2>
+      <p>Fix Her is a hair brand built on one belief: when your hair is right, everything feels right. We specialise in luxury wig installs, high-quality wigs and professional revamps, so you leave looking confident, elegant and effortlessly beautiful.</p>
+      <p>Every unit is customised with care: hairline, fit, curl pattern and finish. Whether it is a brand-new wig or one you already own, we make it look like it was made for you.</p>
+    </div>
+  </div>
+  <div class="values">
+    <div class="reveal"><b>Quality</b><p>Premium hair and careful craftsmanship in every service.</p></div>
+    <div class="reveal"><b>Detail</b><p>Clean hairlines, secure fits and finishing you can see.</p></div>
+    <div class="reveal"><b>Care</b><p>Friendly, honest advice and aftercare you can trust.</p></div>
+    <div class="reveal"><b>Speed</b><p>Easy online booking and quick WhatsApp confirmation.</p></div>
+  </div>
+</section>
+{% endblock %}

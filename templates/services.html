@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Services · Fix Her Hair Brand{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">What we do</p>
+    <h1>Our <em>Services</em></h1>
+    <p class="lede">Wig installs, premium wigs and expert revamps. Everything your crown needs.</p>
+  </div>
+</section>
+
+<section class="wrap">
+  {% for s in services %}
+  <article class="svc {{ 'flip' if loop.index is even }}" id="{{ s.slug }}">
+    <div class="svc-img reveal"><img src="{{ url_for('static', filename='img/' ~ s.image) }}" alt="{{ s.name }}" loading="lazy"></div>
+    <div class="svc-text reveal">
+      <span class="trio-ic">{% include "_icon.html" %}</span>
+      <p class="eyebrow">{{ s.tag }}</p>
+      <h2>{{ s.name }}</h2>
+      <p>{{ s.text }}</p>
+      <ul class="ticks">{% for i in s.includes %}<li>{{ i }}</li>{% endfor %}</ul>
+      <div class="hero-btns">
+        <a class="btn btn-dark" href="{{ url_for('book', service=s.slug) }}">Book {{ s.name }}</a>
+        <a class="btn btn-line" href="{{ wa_link('Hello Fix Her! I would like to ask about ' ~ s.name ~ '.') }}" target="_blank" rel="noopener">Ask on WhatsApp</a>
+      </div>
+    </div>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="section wrap narrow">
+  <div class="sec-head reveal"><span class="rule"></span><h2>Questions</h2><span class="rule"></span></div>
+  <div class="faq">
+    {% for q, a in faqs %}
+    <details class="reveal"><summary>{{ q }}</summary><p>{{ a }}</p></details>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

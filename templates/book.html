@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Book an Appointment · Fix Her{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Look good. Feel greater.</p>
+    <h1>Book your <em>Appointment</em></h1>
+    <p class="lede">Pick a service, choose your slot, and we will confirm on WhatsApp.</p>
+  </div>
+</section>
+<section class="wrap book-wrap">
+  <form class="form book-form" method="post" id="bookForm" novalidate>
+    <fieldset>
+      <legend><b>1</b> Choose a service</legend>
+      <div class="choice-grid">
+        {% for s in nav_services %}
+        <label class="choice">
+          <input type="radio" name="service" value="{{ s.slug }}" {{ 'checked' if (form.get('service') or preselect) == s.slug }} required>
+          <span><strong>{{ s.name }}</strong><small>{{ s.tag }}</small></span>
+        </label>
+        {% endfor %}
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><b>2</b> Pick a date &amp; time</legend>
+      <label>Date
+        <input type="date" name="date" id="bDate" min="{{ today }}" max="{{ max_day }}" value="{{ form.get('date','') }}" required>
+      </label>
+      <p class="hint" id="dateHint">We are closed on Sundays.</p>
+      <div class="slots" id="slots" data-selected="{{ form.get('time','') }}">
+        {% for t in slots %}
+        <label class="slot"><input type="radio" name="time" value="{{ t }}" {{ 'checked' if form.get('time') == t }}><span>{{ t }}</span></label>
+        {% endfor %}
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><b>3</b> Your details</legend>
+      <label>Full name<input name="name" value="{{ form.get('name','') }}" autocomplete="name" required></label>
+      <label>Phone / WhatsApp number<input name="phone" inputmode="tel" value="{{ form.get('phone','') }}" autocomplete="tel" placeholder="0801 234 5678" required></label>
+      <label>Wig<select name="wig_source">
+        <option value="">Select…</option>
+        <option {{ 'selected' if form.get('wig_source')=='I will bring my own wig' }}>I will bring my own wig</option>
+        <option {{ 'selected' if form.get('wig_source')=='I want to buy a wig from Fix Her' }}>I want to buy a wig from Fix Her</option>
+        <option {{ 'selected' if form.get('wig_source')=='Not sure yet' }}>Not sure yet</option>
+      </select></label>
+      <label>Notes (style, colour, anything we should know)<textarea name="notes" rows="3">{{ form.get('notes','') }}</textarea></label>
+    </fieldset>
+    <button class="btn btn-dark full" type="submit">Request appointment</button>
+    <p class="hint center">Your slot is held once submitted. We confirm with you on WhatsApp.</p>
+  </form>
+  <aside class="book-aside reveal">
+    <img src="{{ url_for('static', filename='img/bangs-sm.jpg') }}" alt="Fix Her wig" loading="lazy">
+    <h3>Prefer to chat?</h3>
+    <p>Message us directly and we will help you choose.</p>
+    <a class="btn btn-wa full" href="{{ wa_link('Hello Fix Her! I would like to book an appointment.') }}" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    <p class="hint">{{ brand.hours }}</p>
+  </aside>
+</section>
+{% endblock %}

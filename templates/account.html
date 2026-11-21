@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Account · Fix Her{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="wrap"><p class="eyebrow">Your space</p><h1>My <em>Account</em></h1></div>
+</section>
+<section class="wrap narrow">
+  <div class="acct reveal in">
+    <a class="acct-row" href="{{ url_for('book') }}"><b>Book an appointment</b><span>→</span></a>
+    <a class="acct-row" href="{{ url_for('wishlist') }}"><b>My wishlist</b><span data-wish-count>0</span></a>
+    <a class="acct-row" href="{{ url_for('cart') }}"><b>My basket</b><span data-cart-count>0</span></a>
+    <a class="acct-row" href="{{ wa_link('Hello Fix Her! I need help with my booking.') }}" target="_blank" rel="noopener"><b>Need help? WhatsApp us</b><span>→</span></a>
+    <a class="acct-row" href="{{ url_for('contact') }}"><b>Contact &amp; hours</b><span>→</span></a>
+  </div>
+</section>
+{% endblock %}

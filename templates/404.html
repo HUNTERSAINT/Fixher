@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Page not found · Fix Her{% endblock %}
+{% block content %}
+<section class="wrap narrow center done">
+  <h1 style="font-size:5rem">404</h1>
+  <p class="lede">That page slipped away. Let's get you back to something beautiful.</p>
+  <a class="btn btn-dark" href="{{ url_for('home') }}">Back to home</a>
+</section>
+{% endblock %}
